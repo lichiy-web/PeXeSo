@@ -1,0 +1,272 @@
+:root {
+    --cardstop-image: url(../img/cardtops/00.png);
+    --number_patternes: 8;
+    --cell-width: 3vw;
+    --cell-height: 3vh;
+    --top-width: 15vw;
+    --top-height: 15vh;
+    --game_field-width: 88vw;
+    --game_field-height: 88vh;
+    --game_field-padding: 1em;
+    --pattern-margin: 2px;
+    --menu-height: 8vh;
+}
+
+body {
+    background-color: #EEE;
+    background-image: url(../img/game_cover.jpg);
+    background-size: 100%;
+    overflow: hidden;
+}
+
+#game_field {
+    position: absolute;
+    width: var(--game_field-width);
+    height: var(--game_field-height);
+    left: .5vw;
+    bottom: 1vh;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: calc(var(--game_field-padding) - 1px);
+    box-shadow: .5em .5em 0.5em;
+    background-image: url("../img/landscapes/01.jpg");
+    background-size: cover;
+}
+
+nav {
+    width: var(--game_field-width);
+    height: var(--menu-height);
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: .5vw;
+    top: 1vh;
+    background-image: url(../img/toolbar/menu_cover.png);
+    background-size: 100% 100%;
+    box-shadow: .5em .5em 0.5em;
+    padding: 1vh calc(var(--game_field-width) / 12);
+}
+
+.close {
+    display: none;
+}
+
+.menu_title {
+    box-sizing: border-box;
+    width: calc(5 * var(--game_field-width) / (6 * 3) - 4vw);
+    height: calc(var(--menu-height) - 2vh);
+    line-height: calc(var(--menu-height) - 2vh);
+    margin-right: 2vw;
+    margin-left: 2vw;
+    background-image: url("../img/title/tittle.png");
+    background-size: 100% 100%;
+    float: left;
+    font-size: 3.5vh;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: .5vw .5vh 0.7vh #000;
+    color: #222;
+    -webkit-filter: brightness(90%);
+}
+
+.menu_title:hover {
+    /*    box-shadow: none;*/
+    /*    margin-top: 0.5vh;*/
+    cursor: pointer;
+    -webkit-filter: brightness(105%);
+    color: #000;
+}
+
+.menu_title:active {
+    box-shadow: none;
+    margin-top: 0.5vh;
+}
+
+.submenus {
+    position: absolute;
+    background-image: url(../img/title/tittle.png);
+    background-size: 100% 100%;
+    z-index: 20;
+    padding: 2vw 2vh;
+    box-shadow: .5em .5em 0.5em;
+    cursor: pointer;
+}
+
+#dimension {
+    width: calc(10 * var(--cell-width) + 4vw);
+    height: calc(10 * var(--cell-height) + 4vh);
+}
+
+#dimension table,
+#dimension tr,
+#dimension td {
+    /*    border-collapse: collapse;*/
+    box-sizing: border-box;
+    margin: 1vh 1vw;
+    color: #ffffff;
+}
+
+#dimension td {
+    border: 1px solid #000;
+    /*    background-color: #000;*/
+    width: var(--cell-width);
+    height: var(--cell-height);
+    color: #FFF;
+    font-weight: bold;
+    font-size: calc(var(--cell-height) * 0.8);
+    line-height: var(--cell-height);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#cardtops {
+    width: calc(3 * (var(--top-width) + 1vw) + 2vw);
+    height: calc(3 * (var(--top-height) + 1vh) + 4vh);
+    font-weight: bold;
+    padding: 2vh 1vw;
+    box-sizing: border-box;
+
+}
+
+.cardtop {
+    width: var(--top-width);
+    height: var(--top-height);
+    float: left;
+    margin: .5vh .5vw;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-size: 100% 100%;
+    -webkit-filter: brightness(80%);
+    box-shadow: .5vw .5vh 0.7vh #000;
+}
+
+.cardtop:hover {
+    -webkit-filter: brightness(105%);
+    box-shadow: .5vw .5vh 0.7vh #000;
+}
+
+.cardtop:active {
+    margin-top: 1vh;
+    margin-bottom: 0;
+    box-shadow: none;
+
+}
+
+.active_top {
+    box-shadow: 0 0 3vh #F00;
+    -webkit-filter: brightness(105%);
+}
+
+#tool_bar {
+    width: 10vw;
+    height: 98vh;
+    position: absolute;
+    right: .5vw;
+    top: 1vh;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-image: url(../img/toolbar/toolbar_cover.png);
+    background-size: 100% 100%;
+    box-shadow: .5em .5em 0.5em;
+    padding: .2em;
+}
+
+.title {
+    width: 100%;
+    margin-top: 5vh;
+    background-image: url(../img/title/tittle.png);
+    background-size: 100% 100%;
+    font-size: 3.5vh;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: .1em .2em 0.3em #000;
+    color: #222;
+}
+
+#title-timer {
+    margin-top: 8vh;
+    height: 7vh;
+    line-height: 7vh;
+    /* box-shadow:  */
+}
+
+.table {
+    width: 100%;
+    margin-top: 2vh;
+    background-image: url(../img/toolbar/timer_table.png);
+    background-size: 100% 100%;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: inset .2em .2em 0.3em rgba(0, 0, 0, .5);
+    font-family: "digital-7";
+    font-weight: bold;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, .7);
+    text-align: center;
+}
+
+#timer {
+    height: 7.5vh;
+    line-height: 7.5vh;
+    font-size: 2.3vw;
+    color: rgba(35, 35, 35, 1);
+}
+
+#title-score {
+    height: 7vh;
+    line-height: 7vh;
+}
+
+#score {
+    height: 7.5vh;
+    line-height: 7.5vh;
+    font-size: 4vw;
+    color: rgba(150, 220, 0, .7);
+}
+
+#title-click {
+    height: 7vh;
+    line-height: 7vh;
+    /* box-shadow: */
+}
+
+#click {
+    height: 7.5vh;
+    line-height: 7.5vh;
+    font-size: 4vw;
+    color: rgba(150, 220, 0, .7);
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.pattern {
+    float: left;
+    /* border: 1px solid #000; */
+    box-sizing: border-box;
+    width: calc((var(--game_field-width) - 2 * var(--game_field-padding)) / var(--number_patternes) - 2 * var(--pattern-margin));
+    height: calc((var(--game_field-height) - 2 * var(--game_field-padding)) / var(--number_patternes) - 2 * var(--pattern-margin));
+    margin: var(--pattern-margin);
+    background-image: var(--cardstop-image);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    color: #FFF;
+    box-shadow: 0 0 1em rgba(0,0,0,.6);
+}
+
+.pattern:hover {
+    cursor: pointer;
+}
+
+.top {
+    background-color: rgba(0, 150, 150, 1);
+}
