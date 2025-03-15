@@ -1,8 +1,8 @@
 var dim = 8; //размерность игрового поля
 var root = document.querySelector(":root");
-root.style.setProperty("--number_patternes", dim);
+root.style.setProperty("--number_patterns", dim);
 
-var numberPatternes = (dim % 2 === 0) ? dim * dim / 2 : (dim * dim - 1) / 2;
+var numberPatterns = (dim % 2 === 0) ? dim * dim / 2 : (dim * dim - 1) / 2;
 var gameField = document.getElementById("game_field");
 function randomLandscape(){
     var landscapeNum = rnd(0, 20);
@@ -11,7 +11,7 @@ function randomLandscape(){
 } //Установка случайного пезажа на обои игрового поля
 
 var patternsObjList = [{}];
-var gamePatternes; //Коллекция элементов DOM, паттерны на игровом поле
+var gamePatterns; //Коллекция элементов DOM, паттерны на игровом поле
 var timer = document.getElementById("timer");
 var score = document.getElementById("score");
 var click = document.getElementById("click");
@@ -97,20 +97,20 @@ function resetGame() { //Функция перезагрузки игры
     openPattern1 = undefined;
     openPattern2 = undefined;
     isWait = false;
-    gamePatternes = gameField.children;
+    gamePatterns = gameField.children;
     
     randomLandscape();
     setDimTable(dim);
     
     var image;
-    for(var i = 0; i < numberPatternes; i++) {
-        image = (i < 10) ? "img/patternes/0" + i + ".jpg" : "img/patternes/" + i + ".jpg";
+    for(var i = 0; i < numberPatterns; i++) {
+        image = (i < 10) ? "img/patterns/0" + i + ".jpg" : "img/patterns/" + i + ".jpg";
         patternsObjList[2 * i] = new CreatePatternObj(i, image, false);
         patternsObjList[2 * i + 1] = new CreatePatternObj(i, image, false);
     }
     
     gameField.textContent = "";
-    for(i = 0; i < numberPatternes; i++) {
+    for(i = 0; i < numberPatterns; i++) {
         createPattern(gameField, patternsObjList[i * 2].dataID);
         createPattern(gameField, patternsObjList[i * 2 + 1].dataID);
     }
@@ -125,19 +125,19 @@ function createPattern(elem, dataID){ //Функция размещения па
     elem.appendChild(pattern);    
 } //Функция размещения паттерна на игровом поле
 
-function randomPatternes() {
+function randomPatterns() {
     var swapIndex1;
     var swapIndex2;
     
     for(var i = 0; i < 10 * dim * dim; i++) {
-        swapIndex1 = rnd(0, gamePatternes.length - 1);
-        swapIndex2 = rnd(0, gamePatternes.length - 1);
+        swapIndex1 = rnd(0, gamePatterns.length - 1);
+        swapIndex2 = rnd(0, gamePatterns.length - 1);
         
-        swapElementes(gamePatternes, swapIndex1, swapIndex2);
+        swapElementes(gamePatterns, swapIndex1, swapIndex2);
         swapArrElementes(patternsObjList, swapIndex1, swapIndex2);
     }
 } //функция перемешивания паттернов
-randomPatternes();
+randomPatterns();
 
 function game(e) {
     if(isWait || e.target.dataset.id === undefined) { return; };
@@ -149,7 +149,7 @@ function game(e) {
     
     clickCount++;
     click.textContent = clickCount;
-    var index = hasElementIndex(gamePatternes, e.target);
+    var index = hasElementIndex(gamePatterns, e.target);
     var hiddenIndex1, hiddenIndex2;
         
     if(!isOpen) {
@@ -163,8 +163,8 @@ function game(e) {
         openPattern2 = e.target;
         openPattern2.style.backgroundImage = patternsObjList[index].toString();
         if(comporatePattern(dataID1, dataID2)){
-            console.log("YES", scoreCount + " из " + numberPatternes);
-            hiddenIndex1 = hasElementIndex(gamePatternes, openPattern1);
+            console.log("YES", scoreCount + " из " + numberPatterns);
+            hiddenIndex1 = hasElementIndex(gamePatterns, openPattern1);
             hiddenIndex2 = index;
             if(hiddenIndex1 === hiddenIndex2) { //Не реагировать если дважды щёлкнут по одному и тому же паттерну
                return;
@@ -185,10 +185,10 @@ function game(e) {
                 scoreCount++;
                 score.textContent = scoreCount;
                 
-                if(scoreCount === +numberPatternes) {
+                if(scoreCount === +numberPatterns) {
                     isStopGame = true;
                     isRunGame = false;
-                    console.log("Stop the Time", scoreCount, numberPatternes, (scoreCount === numberPatternes));
+                    console.log("Stop the Time", scoreCount, numberPatterns, (scoreCount === numberPatterns));
                 }
                 explosion.animation(openPattern1);
                 explosion.animation(openPattern2);
@@ -241,7 +241,7 @@ function cheat(e) {
     }
     
     if(cheatString === cheatCode) {
-        openPatternesAll();
+        openPatternsAll();
         if(isRunGame) {
             isStopGame = true;
         }
@@ -249,19 +249,19 @@ function cheat(e) {
     }
 } //Обработчик чит-кода
 
-function openPatternesAll() {
+function openPatternsAll() {
     var i = 0;
     var timerIDcheat = setTimeout(function interval(){
-        if(i >= gamePatternes.length / 2) {
+        if(i >= gamePatterns.length / 2) {
             clearTimeout(timerIDcheat);
             return;
         }
         
         patternsObjList[i].isDelete = true;
-        gamePatternes[i].style.visibility = "hidden";
+        gamePatterns[i].style.visibility = "hidden";
         
-        patternsObjList[gamePatternes.length - i - 1].isDelete = true;
-        gamePatternes[gamePatternes.length - i - 1].style.visibility = "hidden";
+        patternsObjList[gamePatterns.length - i - 1].isDelete = true;
+        gamePatterns[gamePatterns.length - i - 1].style.visibility = "hidden";
         i++;
         score.textContent = (i <= scoreCount) ? scoreCount : i;
         setTimeout(interval, delay / 10);
@@ -354,7 +354,7 @@ function openMenu(event) {
     
     if(menuName === "reset") {
         resetGame();
-        randomPatternes();
+        randomPatterns();
         if(isRunGame) {
             isStopGame = true;
         }
@@ -462,11 +462,11 @@ function dimensionAction(event) {
         console.log("Вход в dimensionAction по click");
         isStopGame = true;
         dim = setDim;
-        numberPatternes = (dim % 2 === 0) ? dim * dim / 2 : (dim * dim - 1) / 2;
-        root.style.setProperty("--number_patternes", dim); 
+        numberPatterns = (dim % 2 === 0) ? dim * dim / 2 : (dim * dim - 1) / 2;
+        root.style.setProperty("--number_patterns", dim); 
         hiddenSubmenu();
         resetGame();
-        randomPatternes();
+        randomPatterns();
     } else {
         hiddenSubmenu();
     }

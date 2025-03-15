@@ -1,6 +1,6 @@
 :root {
     --cardstop-image: url(../img/cardtops/00.png);
-    --number_patternes: 8;
+    --number_patterns: 8;
     --cell-width: 3vw;
     --cell-height: 3vh;
     --top-width: 15vw;
@@ -68,14 +68,14 @@ nav {
     text-align: center;
     box-shadow: .5vw .5vh 0.7vh #000;
     color: #222;
-    -webkit-filter: brightness(90%);
+    filter: brightness(90%);
 }
 
 .menu_title:hover {
     /*    box-shadow: none;*/
     /*    margin-top: 0.5vh;*/
     cursor: pointer;
-    -webkit-filter: brightness(105%);
+    filter: brightness(105%);
     color: #000;
 }
 
@@ -139,12 +139,12 @@ nav {
     box-sizing: border-box;
     border-radius: 10px;
     background-size: 100% 100%;
-    -webkit-filter: brightness(80%);
+    filter: brightness(80%);
     box-shadow: .5vw .5vh 0.7vh #000;
 }
 
 .cardtop:hover {
-    -webkit-filter: brightness(105%);
+    filter: brightness(105%);
     box-shadow: .5vw .5vh 0.7vh #000;
 }
 
@@ -157,7 +157,7 @@ nav {
 
 .active_top {
     box-shadow: 0 0 3vh #F00;
-    -webkit-filter: brightness(105%);
+    filter: brightness(105%);
 }
 
 #tool_bar {
@@ -253,8 +253,8 @@ nav {
     float: left;
     /* border: 1px solid #000; */
     box-sizing: border-box;
-    width: calc((var(--game_field-width) - 2 * var(--game_field-padding)) / var(--number_patternes) - 2 * var(--pattern-margin));
-    height: calc((var(--game_field-height) - 2 * var(--game_field-padding)) / var(--number_patternes) - 2 * var(--pattern-margin));
+    width: calc((var(--game_field-width) - 2 * var(--game_field-padding)) / var(--number_patterns) - 2 * var(--pattern-margin));
+    height: calc((var(--game_field-height) - 2 * var(--game_field-padding)) / var(--number_patterns) - 2 * var(--pattern-margin));
     margin: var(--pattern-margin);
     background-image: var(--cardstop-image);
     background-size: 100% 100%;
